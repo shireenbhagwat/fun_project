@@ -9,41 +9,54 @@
 <body>
   <main class="stage">
     <section class="panel" aria-label="Quiz panel">
-      <div class="scorebar" id="scoreBar">Score: 0/4</div>
-
-      <!-- ✅ Emoji shows ABOVE the card (not overlaying it) -->
-      <div class="reactionEmojiWrap" id="reactionEmojiWrap" hidden aria-hidden="true">
-        <div class="reactionEmoji" id="reactionEmoji">💖</div>
-      </div>
-
-      <!-- Quiz card -->
-      <div class="card" id="quizCard">
-        <div class="cardInner" id="cardInner">
-          <h2 class="question" id="questionText"></h2>
-
-          <!-- ✅ Question 3 image -->
-          <div class="photoWrap" id="photoWrap" aria-hidden="true">
-            <img class="photo" id="photo" src="florida2026.JPG" alt="Photo memory">
-          </div>
-
-          <div class="choices" id="choices"></div>
+      <!-- Intro card (shows first, then fades out) -->
+        <div class="introCard" id="introCard" hidden>
+            <div class="introText">
+                Smart choice.. But not so quick! 👻 <br/>
+                Lets play a game first.. Hehe!!
+                <br/>
+            </div>
+            <br/>
+            <div class="introText">
+                Your Score Right Now:
+            </div>
         </div>
-      </div>
 
-      <!-- ✅ Text comment shows BELOW the card (not overlaying it) -->
-      <div class="reactionTextWrap" id="reactionTextWrap" hidden aria-hidden="true">
-        <div class="reactionText" id="reactionText">Nice!</div>
-      </div>
+        <div class="scorebar" id="scoreBar">Score: 0/4</div>
 
-      <!-- End screen -->
-      <div class="endcard" id="endCard" hidden>
-        <div class="endtitle" id="endTitle"></div>
-        <div class="endmsg" id="endMsg"></div>
-        <button class="btnPrimary" id="restartBtn" type="button">Try Again</button>
-      </div>
-    </section>
-  </main>
+        <!-- ✅ Emoji shows ABOVE the card (not overlaying it) -->
+        <div class="reactionEmojiWrap" id="reactionEmojiWrap" hidden aria-hidden="true">
+            <div class="reactionEmoji" id="reactionEmoji">💖</div>
+        </div>
 
-  <script src="yes_script.js"></script>
+        <!-- Quiz card -->
+        <div class="card" id="quizCard">
+            <div class="cardInner" id="cardInner">
+            <h2 class="question" id="questionText"></h2>
+
+            <!-- ✅ Question 3 image -->
+            <div class="photoWrap" id="photoWrap" aria-hidden="true">
+                <img class="photo" id="photo" src="florida2026.JPG" alt="Photo memory">
+            </div>
+
+            <div class="choices" id="choices"></div>
+            </div>
+        </div>
+
+        <!-- ✅ Text comment shows BELOW the card (not overlaying it) -->
+        <div class="reactionTextWrap" id="reactionTextWrap" hidden aria-hidden="true">
+            <div class="reactionText" id="reactionText">Nice!</div>
+        </div>
+
+        <!-- End screen -->
+        <div class="endcard" id="endCard" hidden>
+            <div class="endtitle" id="endTitle"></div>
+            <div class="endmsg" id="endMsg"></div>
+            <button class="btnPrimary" id="restartBtn" type="button">Try Again</button>
+        </div>
+        </section>
+    </main>
+
+    <script src="yes_script.js"></script>
 </body>
 </html>

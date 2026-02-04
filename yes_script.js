@@ -19,35 +19,35 @@ const reactionText = document.getElementById("reactionText");
 // Your questions with better-fitting emojis
 const quiz = [
   {
-    q: "When did we first meet?",
-    choices: ["Jan 2015", "June 2015", "Jan 2016"],
+    q: "When did we first REALLY meet ?",
+    choices: ["January 2015", "June 2015", "January 2016"],
     correctIndex: 1,
-    correctEmoji: "🗓️💜",
+    correctEmoji: "🗓️ 💜",
     correctText: "Correct!",
     showPhoto: false
   },
   {
     q: "What was my first valentines gift to you?",
-    choices: ["Flowers", "Apple Watch", "Chocolates"],
-    correctIndex: 1,
-    correctEmoji: "⌚️💝",
-    correctText: "Correct!",
+    choices: ["Apple Watch", "Flowers", "Chocolates"],
+    correctIndex: 0,
+    correctEmoji: "⌚️ 💝",
+    correctText: "Right - O!",
     showPhoto: false
   },
   {
     q: "Where did we click this photo?",
-    choices: ["Palm Springs", "Jim Thorpe", "Florida"],
+    choices: ["Jim Thorpe", "Palm Springs", "Florida"],
     correctIndex: 2,
-    correctEmoji: "🌴☀️💜",
-    correctText: "Correct!",
+    correctEmoji: "🌴 ☀️ 💜",
+    correctText: "DUDE, You are Killing at this game!",
     showPhoto: true
   },
   {
     q: "Tell me where do you want to travel next?",
     choices: ["Greece", "Switzerland", "Japan"],
     correctIndex: -1, // any answer correct
-    correctEmoji: "🇮🇳✨",
-    correctText: "India, Noted!!",
+    correctEmoji: "🇮🇳 ✨",
+    correctText: "lol -- INDIA, Noted !! ",
     showPhoto: false
   }
 ];
@@ -76,6 +76,36 @@ function hideReactions(){
   reactionEmojiWrap.setAttribute("aria-hidden", "true");
   reactionTextWrap.setAttribute("aria-hidden", "true");
 }
+
+
+
+function startWithIntro(){
+  endCard.hidden = true;
+  quizCard.hidden = true;      // hide game until intro finishes
+  hideReactions();
+
+  introCard.hidden = false;
+
+  // fade intro in
+  requestAnimationFrame(() => introCard.classList.add("show"));
+
+  // keep it visible for a moment, then fade out, then start game
+  const showMs = 2500;   // how long message stays fully visible
+  const fadeMs = 1200;    // must match CSS transition duration above
+
+  setTimeout(() => {
+    introCard.classList.remove("show"); // fade out
+    setTimeout(() => {
+      introCard.hidden = true;
+      quizCard.hidden = false;
+      renderQuestion();
+    }, fadeMs);
+  }, showMs + fadeMs);
+}
+
+
+
+
 
 function showReactions(emoji, text){
   // start hidden
@@ -146,7 +176,7 @@ function onChoice(choiceIndex){
 
   const emoji = isCorrect ? item.correctEmoji : getWrongEmoji();
   const text =
-    isQ4 ? "India, Noted!!" :
+    isQ4 ? "lol -- INDIA, Noted !! " :
     isCorrect ? item.correctText :
     "Wrong 😈";
 
@@ -192,8 +222,12 @@ function finish(){
     // ✅ Success
     showFinalEmoji("😍");
 
-    endTitle.textContent = "Congrats!";
-    endMsg.textContent = "Thank you for playing and being my valentine!";
+    endTitle.textContent = "Congratulations, Husband! ";
+    // endMsg.textContent = "Thank you for being my Valentine 💖";
+    endMsg.innerHTML = 
+        "Thank you for being my Valentine 💖 <br/>" + 
+        "(I know I am awesome.. dont get so emotional.. hehe) <br/>" + 
+        "Just hand over my gift! 😉 ";
     restartBtn.hidden = true; // ✅ no play again button
   } else {
     // ❌ Try again
@@ -235,8 +269,15 @@ function restartGame(){
 
 restartBtn.addEventListener("click", restartGame);
 
-// Start clean
-endCard.hidden = true;
-quizCard.hidden = false;
-hideReactions();
-renderQuestion();
+// // Start clean
+// endCard.hidden = true;
+// quizCard.hidden = false;
+// hideReactions();
+// renderQuestion();
+
+//Intro Card 
+const introCard = document.getElementById("introCard");
+
+// Start: show intro card, then begin quiz
+startWithIntro();
+
